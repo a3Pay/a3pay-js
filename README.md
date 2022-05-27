@@ -6,12 +6,25 @@ Javascript Library for a3Pay
  * npm - [npmjs.com](https://npmjs.com/)
 
 
-## Installation
-To install with npm run the following command
+## Installing
 
-    npm i a3pay-js
+Using npm:
 
+```bash
+$ npm i a3pay-js
+```
 
+Using jsDelivr CDN:
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/a3pay-js@1.0.1/dist/a3pay.min.js"></script>
+```
+
+Using unpkg CDN:
+
+```html
+<script src="https://unpkg.com/a3pay-js@1.0.1/dist/a3pay.min.js"></script>
+```
 
 ## Usage
 ```js
