@@ -15,32 +15,15 @@ To install with npm run the following command
 
 ## Usage
 ```js
-//TEST
-var payments = new a3_payments('w6gfpqde8a3u5lauu7r7xkfqhkinslvxrsybr0');
+//Payments Collection
+const payments = new a3_payments('w6gfpqde8a3u5lauu7r7xkfqhkinslvxrsybr0');
 
-payments.get_tx_list(3, function(error, resp) {
-    if (error) {
-        console.log(error);
-    } else {
-        console.log(resp);
-    }
-});
-
-
-payments.get_tx_info('w0ogbja0cfs7rp466', function(error, resp) {
-    if (error) {
-        console.log(error);
-    } else {
-        console.log(resp);
-    }
-});
-
-var amount = 1000;
-var label = 'frgtyuy4';
-var currency = 'USD';
-var coin = 'BTC,USDT';
-var success_url = 'https://my_domain.com/success_callback?id=456ytgre56';
-var error_url = 'https://my_domain.com/error_callback?id=456ytgre56';
+const amount = 1000;
+const label = 'frgtyuy4';
+const currency = 'USD';
+const coin = 'BTC,USDT';
+const success_url = 'https://my_domain.com/success_callback?id=456ytgre56';
+const error_url = 'https://my_domain.com/error_callback?id=456ytgre56';
 payments.create_transaction(amount, label, currency, coin, success_url, error_url, function(error, resp) {
     if (error) {
         console.log(error);
@@ -49,6 +32,46 @@ payments.create_transaction(amount, label, currency, coin, success_url, error_ur
     }
 });
 
+
+//Wallet
+const eth_api_key = '663b3bf8oubf8d4059489f8ffa3663b3205948'; // For Ethereum
+const wallet = new a3_wallet(btc_api_key);
+
+//get_new_address
+const label = 'wsedrftgyh';
+wallet.get_new_address(label, function(error, resp) {
+    if (error) {
+        console.log(error);
+    } else {
+        console.log(resp);
+    }
+});
+
+
+//a3 Apps
+const apps = new a3_apps('w6gfpqde8a3u5lauu7r7xkfqhkinslvxrsybr0');
+
+//get_account_info
+apps.get_account_info(function(error, resp) {
+    if (error) {
+        console.log(error);
+    } else {
+        console.log(resp);
+    }
+});
+
+
+//a3Marketa
+const marketa = new a3_marketa();
+
+//Live data
+marketa.live_data(function(error, resp) {
+    if (error) {
+        console.log(error);
+    } else {
+        console.log(resp);
+    }
+});
 
 ```
 
