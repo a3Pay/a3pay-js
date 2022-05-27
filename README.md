@@ -9,7 +9,7 @@ Javascript Library for a3Pay
 ## Installation
 To install with npm run the following command
 
-    npn install a3pay-js
+    npm i a3pay-js
 
 
 
