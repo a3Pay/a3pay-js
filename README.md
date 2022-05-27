@@ -2,10 +2,6 @@
 Javascript Library for a3Pay
 
 
-## Requirements
- * npm - [npmjs.com](https://npmjs.com/)
-
-
 ## Installing
 
 Using npm:
