@@ -5,10 +5,19 @@ class FetchHttpHandler {
             redirect: 'follow',
             cache: "no-store"
         };
+        this.requestOptions_nocache = {
+            method: 'GET',
+            redirect: 'follow'
+        };
     }
-    send(request, callback) {
+    send(request, callback, _cache) {
         try {
-            fetch("https://a3pay.co/" + request, this.requestOptions)
+            if(_cache == 'no-cache') {
+                var reqOpt = this.requestOptions_nocache;
+            } else {
+                var reqOpt = this.requestOptions;
+            }
+            fetch("https://a3pay.co/" + request, reqOpt)
                 .then(response => response.json())
                 .then(result => {
                     callback(null, result);
@@ -39,7 +48,7 @@ class a3_payments {
             } else {
                 callback('Failed: ' + resp.message, null);
             }
-        });
+        }, 'no-cache');
     }
     get_tx_info(txid, callback) {
         const request = this.endpoint + 'get_tx_info/' + this.token + '/' + txid;
@@ -49,7 +58,7 @@ class a3_payments {
             } else {
                 callback('Failed: ' + resp.message, null);
             }
-        });
+        }, 'cache');
     }
     get_tx_list(limit, callback) {
         const request = this.endpoint + 'get_tx_list/' + this.token + '/' + limit;
@@ -59,7 +68,7 @@ class a3_payments {
             } else {
                 callback('Failed: ' + resp.message, null);
             }
-        });
+        }, 'no-cache');
     }
 }
 class a3_marketa {
@@ -75,7 +84,7 @@ class a3_marketa {
             } else {
                 callback('Failed: ' + resp.message, null);
             }
-        });
+        }, 'cache');
     }
     specific_data(target, symbol, option, callback) {
         const request = this.endpoint + 'specific_data/?target=' + target + '&symbol=' + symbol + '&option=' + option;
@@ -85,7 +94,7 @@ class a3_marketa {
             } else {
                 callback('Failed: ' + resp.message, null);
             }
-        });
+        }, 'cache');
     }
     list_symbols(callback) {
         const request = this.endpoint + 'list_symbols';
@@ -95,7 +104,7 @@ class a3_marketa {
             } else {
                 callback('Failed: ' + resp.message, null);
             }
-        });
+        }, 'cache');
     }
     list_targets(callback) {
         const request = this.endpoint + 'list_targets';
@@ -105,7 +114,7 @@ class a3_marketa {
             } else {
                 callback('Failed: ' + resp.message, null);
             }
-        });
+        }, 'cache');
     }
 }
 
@@ -123,7 +132,7 @@ class a3_apps {
             } else {
                 callback('Failed: ' + resp.message, null);
             }
-        });
+        }, 'cache');
     }
     get_account_info(callback) {
         const request = this.endpoint + 'get_account_info/?token=' + this.token;
@@ -133,7 +142,7 @@ class a3_apps {
             } else {
                 callback('Failed: ' + resp.message, null);
             }
-        });
+        }, 'cache');
     }
     list_login_activity(callback) {
         const request = this.endpoint + 'list_login_activity/?token=' + this.token;
@@ -143,7 +152,7 @@ class a3_apps {
             } else {
                 callback('Failed: ' + resp.message, null);
             }
-        });
+        }, 'cache');
 
     }
     list_assets(callback) {
@@ -154,7 +163,7 @@ class a3_apps {
             } else {
                 callback('Failed: ' + resp.message, null);
             }
-        });
+        }, 'cache');
 
     }
     support_countries(callback) {
@@ -165,7 +174,7 @@ class a3_apps {
             } else {
                 callback('Failed: ' + resp.message, null);
             }
-        });
+        }, 'cache');
 
     }
     list_pricing(callback) {
@@ -176,7 +185,7 @@ class a3_apps {
             } else {
                 callback('Failed: ' + resp.message, null);
             }
-        });
+        }, 'cache');
 
     }
     support_currencies(callback) {
@@ -187,7 +196,7 @@ class a3_apps {
             } else {
                 callback('Failed: ' + resp.message, null);
             }
-        });
+        }, 'cache');
 
     }
 }
@@ -205,7 +214,7 @@ class a3_wallet {
             } else {
                 callback('Failed: ' + resp.message, null);
             }
-        });
+        }, 'cache');
     }
     get_balance(callback) {
         const request = 'get_balance/?api_key=' + this.api_key;
@@ -215,7 +224,7 @@ class a3_wallet {
             } else {
                 callback('Failed: ' + resp.message, null);
             }
-        });
+        }, 'no-cache');
     }
     get_my_addresses(limit, callback) {
         const request = 'get_my_addresses/?api_key=' + this.api_key + '&limit=' + limit;
@@ -225,7 +234,7 @@ class a3_wallet {
             } else {
                 callback('Failed: ' + resp.message, null);
             }
-        });
+        }, 'cache');
     }
     get_address_by_label(label, callback) {
         const request = 'get_address_by_label/?api_key=' + this.api_key + '&label=' + label;
@@ -235,7 +244,7 @@ class a3_wallet {
             } else {
                 callback('Failed: ' + resp.message, null);
             }
-        });
+        }, 'no-cache');
     }
     get_network_fee_estimate(callback) {
         const request = 'get_network_fee_estimate/?api_key=' + this.api_key;
@@ -245,7 +254,7 @@ class a3_wallet {
             } else {
                 callback('Failed: ' + resp.message, null);
             }
-        });
+        }, 'cache');
     }
     get_transaction(txid, callback) {
         const request = 'get_transaction/?api_key=' + this.api_key + '&txid=' + txid;
@@ -255,7 +264,7 @@ class a3_wallet {
             } else {
                 callback('Failed: ' + resp.message, null);
             }
-        });
+        }, 'cache');
     }
     send_to_address(address, amount, from, callback) {
         if(from) {
@@ -269,7 +278,7 @@ class a3_wallet {
             } else {
                 callback('Failed: ' + resp.message, null);
             }
-        });
+        }, 'no-cache');
     }
     set_tx_fee(feerate, callback) {
         const request = 'set_tx_fee/?api_key=' + this.api_key + '&feerate=' + feerate;
@@ -279,7 +288,7 @@ class a3_wallet {
             } else {
                 callback('Failed: ' + resp.message, null);
             }
-        });
+        }, 'cache');
     }
     wallet_unlock(passphrase, duration, callback) {
         const request = 'wallet_unlock/?api_key=' + this.api_key + '&passphrase=' + passphrase + '&duration=' + duration;
@@ -289,7 +298,7 @@ class a3_wallet {
             } else {
                 callback('Failed: ' + resp.message, null);
             }
-        });
+        }, 'cache');
     }
     wallet_lock(callback) {
         const request = 'wallet_lock/?api_key=' + this.api_key;
@@ -299,7 +308,7 @@ class a3_wallet {
             } else {
                 callback('Failed: ' + resp.message, null);
             }
-        });
+        }, 'cache');
     }
     passphrase_change(oldpassphrase, newpassphrase, callback) {
         const request = 'passphrase_change/?api_key=' + this.api_key + '&oldpassphrase=' + oldpassphrase + '&newpassphrase=' + newpassphrase;
@@ -309,7 +318,7 @@ class a3_wallet {
             } else {
                 callback('Failed: ' + resp.message, null);
             }
-        });
+        }, 'no-cache');
     }
     dump_privkey(address, callback) {
         const request = 'dump_privkey/?api_key=' + this.api_key + '&address=' + address;
@@ -319,7 +328,7 @@ class a3_wallet {
             } else {
                 callback('Failed: ' + resp.message, null);
             }
-        });
+        }, 'no-cache');
     }
     abandon_transaction(txid, callback) {
         const request = 'abandon_transaction/?api_key=' + this.api_key + '&txid=' + txid;
@@ -329,6 +338,6 @@ class a3_wallet {
             } else {
                 callback('Failed: ' + resp.message, null);
             }
-        });
+        }, 'cache');
     }
 }
