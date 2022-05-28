@@ -53,6 +53,25 @@ payments.create_transaction(amount, label, currency, coin, null, null, function(
 });
 
 
+//Wallet
+//Ignite the a3apps Class Using Your a3Pay Account Taken
+const btc_api_key = 'praoubf8d2e1584059489f8ffa3663b3223df2'; //For Bitcoin
+const usdt_api_key = '9f8ffbf8d2e1584059489f8ffa3663b3223df2'; //For Tether USDT
+const eth_api_key = '663b3bf8oubf8d4059489f8ffa3663b3205948'; //For Ethereum
+//To know more about wallet api keys and how to get yours follow here (https://a3pay.co/docs/#api_key)
+const wallet = new a3_wallet(btc_api_key);
+
+//Calling get_new_address
+let label = 'wsedrftgyh';
+wallet.get_new_address(label, function(error, resp) {
+    if(error) {
+        console.log(error);
+    } else {
+        console.log(resp);
+    }
+});
+
+
 //a3Marketa
 //Ignite the a3marketa Class
 const marketa = new a3_marketa();
