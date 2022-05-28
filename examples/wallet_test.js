@@ -49,6 +49,16 @@ wallet.get_address_by_label(label, function(error, resp) {
 });
 
 
+//Calling get_address_balance
+let address = '0x004E63486BE595EdD45f6CC6418718b2B598E9AB';
+wallet.get_address_balance(address, function(error, resp) {
+    if(error) {
+        console.log(error);
+    } else {
+        console.log(resp);
+    }
+});
+
 //Calling get_network_fee_estimate
 wallet.get_network_fee_estimate(function(error, resp) {
     if(error) {
@@ -87,6 +97,14 @@ let amount = '0.2';
 let from = '0xd89a37efdbe6f706224750c7cd33d8da';
 
 wallet.send_to_address(address, amount, from, function(error, resp) {
+    if(error) {
+        console.log(error);
+    } else {
+        console.log(resp);
+    }
+});
+//Calling send_to_address without 'from' address
+wallet.send_to_address(address, amount, null, function(error, resp) {
     if(error) {
         console.log(error);
     } else {
