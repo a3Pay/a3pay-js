@@ -25,16 +25,27 @@ Using unpkg CDN:
 ## Usage
 ```js
 //Payments Collection
-const payments = new a3_payments('w6gfpqde8a3u5lauu7r7xkfqhkinslvxrsybr0');
+//Ignite the Payment Collection Class Using Your a3Pay Account Taken
+const token = 'w6gfpqde8a3u5lauu7r7xkfqhkinslvxrsybr0'; //To know more about tokens and how to get yours follow here (https://a3pay.co/docs/#access_token)
+const payments = new a3_payments(token);
 
-const amount = 1000;
-const label = 'frgtyuy4';
-const currency = 'USD';
-const coin = 'BTC,USDT';
-const success_url = 'https://my_domain.com/success_callback?id=456ytgre56';
-const error_url = 'https://my_domain.com/error_callback?id=456ytgre56';
+//Calling create_transaction
+let amount = 1000;
+let label = 'frgtyuy4';
+let currency = 'USD';
+let coin = 'BTC,USDT';
+let success_url = 'https://my_domain.com/success_callback?id=456ytgre56';
+let error_url = 'https://my_domain.com/error_callback?id=456ytgre56';
 payments.create_transaction(amount, label, currency, coin, success_url, error_url, function(error, resp) {
-    if (error) {
+    if(error) {
+        console.log(error);
+    } else {
+        console.log(resp);
+    }
+});
+//Calling create_transaction without callback urls
+payments.create_transaction(amount, label, currency, coin, null, null, function(error, resp) {
+    if(error) {
         console.log(error);
     } else {
         console.log(resp);
@@ -42,13 +53,12 @@ payments.create_transaction(amount, label, currency, coin, success_url, error_ur
 });
 
 
-//Wallet
-const eth_api_key = '663b3bf8oubf8d4059489f8ffa3663b3205948'; // For Ethereum
-const wallet = new a3_wallet(btc_api_key);
+//a3Marketa
+//Ignite the a3marketa Class
+const marketa = new a3_marketa();
 
-//get_new_address
-const label = 'wsedrftgyh';
-wallet.get_new_address(label, function(error, resp) {
+//Calling Live data
+marketa.live_data(function(error, resp) {
     if (error) {
         console.log(error);
     } else {
@@ -58,29 +68,21 @@ wallet.get_new_address(label, function(error, resp) {
 
 
 //a3 Apps
-const apps = new a3_apps('w6gfpqde8a3u5lauu7r7xkfqhkinslvxrsybr0');
+//Ignite the a3apps Class Using Your a3Pay Account Taken
+const token = 'w6gfpqde8a3u5lauu7r7xkfqhkinslvxrsybr0'; //To know more about tokens and how to get yours follow here (https://a3pay.co/docs/#access_token)
+const apps = new a3_apps(token);
 
-//get_account_info
-apps.get_account_info(function(error, resp) {
-    if (error) {
+//Calling update_password
+let oldpassword = 'test';
+let newpassword = 'test123';
+apps.update_password(oldpassword, newpassword, function(error, resp) {
+    if(error) {
         console.log(error);
     } else {
         console.log(resp);
     }
 });
 
-
-//a3Marketa
-const marketa = new a3_marketa();
-
-//Live data
-marketa.live_data(function(error, resp) {
-    if (error) {
-        console.log(error);
-    } else {
-        console.log(resp);
-    }
-});
 
 ```
 
