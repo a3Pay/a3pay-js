@@ -1,0 +1,27 @@
+ <!DOCTYPE html>
+<html>
+<head>
+<title>a3pay-js</title>
+</head>
+<body>
+
+<h1>Hello world</h1>
+<p>This is a test page for a3pay-js.</p>
+
+</body>
+<script src="dist/a3pay.min.js"></script>
+<script>
+//Ignite the a3marketa Class
+const marketa = new a3_marketa();
+
+
+//Calling Live data
+marketa.live_data(function(error, resp) {
+    if (error) {
+        console.log(error);
+    } else {
+        console.log(resp);
+    }
+});
+</script>
+</html> 
