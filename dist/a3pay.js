@@ -246,6 +246,16 @@ class a3_wallet {
             }
         }, 'no-cache');
     }
+    get_address_balance(address, callback) {
+        const request = 'get_address_balance/?api_key=' + this.api_key + '&address=' + address;
+        this.httpClient.send(request, function(err, resp) {
+            if(resp.status == 'ok') {
+                callback(null, resp.data.final_balance);
+            } else {
+                callback('Failed: ' + resp.message, null);
+            }
+        }, 'no-cache');
+    }
     get_network_fee_estimate(callback) {
         const request = 'get_network_fee_estimate/?api_key=' + this.api_key;
         this.httpClient.send(request, function(err, resp) {
