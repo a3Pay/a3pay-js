@@ -22,92 +22,86 @@ Using unpkg CDN:
 <script src="https://unpkg.com/a3pay-js@1.0.5/dist/a3pay.min.js"></script>
 ```
 
+Include from path:
+
+```html
+<script src="_path_to_/dist/a3pay.min.js"></script>
+```
+
 ## Usage
 ```js
-//Payments Collection
-//Ignite the Payment Collection Class Using Your a3Pay Account Taken
 const token = 'w6gfpqde8a3u5lauu7r7xkfqhkinslvxrsybr0'; //To know more about tokens and how to get yours follow here (https://a3pay.co/docs/#access_token)
-const payments = new a3_payments(token);
 
-//Calling create_transaction
-let amount = 1000;
-let label = 'frgtyuy4';
-let currency = 'USD';
-let coin = 'BTC,USDT';
-let success_url = 'https://my_domain.com/success_callback?id=456ytgre56';
-let error_url = 'https://my_domain.com/error_callback?id=456ytgre56';
-payments.create_transaction(amount, label, currency, coin, success_url, error_url, function(error, resp) {
-    if(error) {
-        console.log(error);
-    } else {
-        console.log(resp);
-    }
-});
-//Calling create_transaction without callback urls
-payments.create_transaction(amount, label, currency, coin, null, null, function(error, resp) {
-    if(error) {
-        console.log(error);
-    } else {
-        console.log(resp);
-    }
-});
-
-
-//Wallet
-//Ignite the a3apps Class Using Your a3Pay Account Taken
 const btc_api_key = 'praoubf8d2e1584059489f8ffa3663b3223df2'; //For Bitcoin
 const usdt_api_key = '9f8ffbf8d2e1584059489f8ffa3663b3223df2'; //For Tether USDT
 const eth_api_key = '663b3bf8oubf8d4059489f8ffa3663b3205948'; //For Ethereum
 //To know more about wallet api keys and how to get yours follow here (https://a3pay.co/docs/#api_key)
-const wallet = new a3_wallet(btc_api_key);
-
-//Calling get_new_address
-let label = 'wsedrftgyh';
-wallet.get_new_address(label, function(error, resp) {
-    if(error) {
-        console.log(error);
-    } else {
-        console.log(resp);
-    }
-});
 
 
-//a3Marketa
-//Ignite the a3marketa Class
-const marketa = new a3_marketa();
-
-//Calling Live data
-marketa.live_data(function(error, resp) {
-    if (error) {
-        console.log(error);
-    } else {
-        console.log(resp);
-    }
-});
+///////Using simple Javascript/////////////////////
+const payments = new a3_payments(token); //Payment Collection
+const wallet = new a3_wallet(btc_api_key); //Wallets
+const apps = new a3_apps(token); //a3Apps
+const marketa = new a3_marketa(); //a3Marketa
+///////Using simple Javascript/////////////////////
 
 
-//a3 Apps
-//Ignite the a3apps Class Using Your a3Pay Account Taken
-const token = 'w6gfpqde8a3u5lauu7r7xkfqhkinslvxrsybr0'; //To know more about tokens and how to get yours follow here (https://a3pay.co/docs/#access_token)
-const apps = new a3_apps(token);
 
-//Calling update_password
-let oldpassword = 'test';
-let newpassword = 'test123';
-apps.update_password(oldpassword, newpassword, function(error, resp) {
-    if(error) {
-        console.log(error);
-    } else {
-        console.log(resp);
-    }
-});
+////////On NodeJs//////////////////////
+const a3pay = require('a3pay-js');
 
+const payments = new a3pay.a3_payments(token); //Payment Collection
+const wallet = new a3pay.a3_wallet(btc_api_key); //Wallets
+const apps = new a3pay.a3_apps(token); //a3Apps
+const marketa = new a3pay.a3_marketa(); //a3Marketa
+///////On NodeJs//////////////////////
 
 ```
 
 
 ## Examples
-Look to the scripts in the `/examples` directory in your browser. You will have to change the api_key and token in the example files to your own.
+```js
+//Payments collection
+//Calling create_transaction
+let amount = 1000;
+let label = 'frgtyuy4';
+let currency = 'USD';
+let coin = 'BTC,USDT';
+//Calling create_transaction without callback urls
+payments.create_transaction(amount, label, currency, coin, null, null, function(error, resp) {
+    //Handle callback
+    if(error) { console.log(error); } else { console.log(resp); }
+});
+
+
+//Wallet
+//Calling get_new_address
+let label = 'wsedrftgyh';
+wallet.get_new_address(label, function(error, resp) {
+    //Handle callback
+    if(error) { console.log(error); } else { console.log(resp); }
+});
+
+
+//a3Marketa
+//Calling Live data
+marketa.live_data(function(error, resp) {
+    //Handle callback
+    if(error) { console.log(error); } else { console.log(resp); }
+});
+
+
+//a3 Apps
+//Calling update_password
+let oldpassword = 'test';
+let newpassword = 'test123';
+apps.update_password(oldpassword, newpassword, function(error, resp) {
+    //Handle callback
+    if(error) { console.log(error); } else { console.log(resp); }
+});
+```
+
+Look to the scripts in the `/examples` directory in your browser for more examples.
 
 
 ## Contributing
