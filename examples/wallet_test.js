@@ -91,6 +91,17 @@ wallet.get_transaction(txid, function(error, resp) {
 });
 
 
+//Calling get_block_transaction
+let txid = '0xd89a37efdbe6f706224750c7cd33d8da0d5aa55b7f214465bf178b60f7699933';
+wallet.get_block_transaction(txid, function(error, resp) {
+    if(error) {
+        console.log(error);
+    } else {
+        console.log(resp);
+    }
+});
+
+
 //Calling send_to_address
 let address = '0xd89a37efdbe6f706224750c7cd33d8da';
 let amount = '0.2';
