@@ -13,13 +13,13 @@ $ npm i a3pay-js
 Using jsDelivr CDN:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/a3pay-js@1.0.7/dist/a3pay.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/a3pay-js@1.0.8/dist/a3pay.min.js"></script>
 ```
 
 Using unpkg CDN:
 
 ```html
-<script src="https://unpkg.com/a3pay-js@1.0.7/dist/a3pay.min.js"></script>
+<script src="https://unpkg.com/a3pay-js@1.0.8/dist/a3pay.min.js"></script>
 ```
 
 Include from path:
