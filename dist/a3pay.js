@@ -31,14 +31,15 @@ class FetchHttpHandler {
     }
 }
 class a3_payments {
-    constructor(token) {
+    constructor(token, mode) {
         this.endpoint = 'payments/';
         this.token = token;
+        this.mode = mode;
         this.httpClient = new FetchHttpHandler();
     }
-    create_transaction(amt, lb, cur, coin, su_call, err_call, callback) {
+    create_transaction(cat, amt, lb, cur, coin, su_call, err_call, callback) {
         if(su_call) {
-            const request = this.endpoint + 'create_transaction/?token=' + this.token + '&amount=' + amt + '&label=' + lb + '&currency=' + cur + '&coin=' + coin + '&success_callback=' + su_call + '&error_callback=' + err_call;
+            const request = this.endpoint + 'create_transaction/?token=' + this.token + '&amount=' + amt + '&mode=' + this.mode + '&category=' + cat + '&label=' + lb + '&currency=' + cur + '&coin=' + coin + '&success_callback=' + su_call + '&error_callback=' + err_call;
         } else {
             const request = this.endpoint + 'create_transaction/?token=' + this.token + '&amount=' + amt + '&label=' + lb + '&currency=' + cur + '&coin=' + coin;
         }
@@ -51,7 +52,7 @@ class a3_payments {
         }, 'no-cache');
     }
     get_tx_info(txid, callback) {
-        const request = this.endpoint + 'get_tx_info/' + this.token + '/' + txid;
+        const request = this.endpoint + 'get_tx_info/' + this.token + '/' + this.mode + '/' + txid;
         this.httpClient.send(request, function(err, resp) {
             if(resp.status == 'ok') {
                 callback(null, resp.data);
@@ -61,7 +62,7 @@ class a3_payments {
         }, 'cache');
     }
     get_tx_list(limit, callback) {
-        const request = this.endpoint + 'get_tx_list/' + this.token + '/' + limit;
+        const request = this.endpoint + 'get_tx_list/' + this.token + '/' + this.mode + '/' + limit;
         this.httpClient.send(request, function(err, resp) {
             if(resp.status == 'ok') {
                 callback(null, resp.data);
@@ -268,6 +269,16 @@ class a3_wallet {
     }
     get_transaction(txid, callback) {
         const request = 'get_transaction/?api_key=' + this.api_key + '&txid=' + txid;
+        this.httpClient.send(request, function(err, resp) {
+            if(resp.status == 'ok') {
+                callback(null, resp.data.tx);
+            } else {
+                callback('Failed: ' + resp.message, null);
+            }
+        }, 'cache');
+    }
+    get_block_transaction(txid, callback) {
+        const request = 'get_block_transaction/?api_key=' + this.api_key + '&txid=' + txid;
         this.httpClient.send(request, function(err, resp) {
             if(resp.status == 'ok') {
                 callback(null, resp.data.tx);
