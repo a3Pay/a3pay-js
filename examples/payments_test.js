@@ -1,6 +1,7 @@
 //Ignite the Payment Collection Class Using Your a3Pay Account Taken
+const mode = 'test'; // 'live' or 'test'
 const token = 'w6gfpqde8a3u5lauu7r7xkfqhkinslvxrsybr0'; //To know more about tokens and how to get yours follow here (https://a3pay.co/docs/#access_token)
-const payments = new a3_payments(token);
+const payments = new a3_payments(token, mode);
 
 
 //Calling get_tx_list
@@ -26,13 +27,14 @@ payments.get_tx_info(txid, function(error, resp) {
 
 
 //Calling create_transaction
+let category = 'test'; // 'live' or 'test'
 let amount = 1000;
 let label = 'frgtyuy4';
 let currency = 'USD';
 let coin = 'BTC,USDT';
 let success_url = 'https://my_domain.com/success_callback?id=456ytgre56';
 let error_url = 'https://my_domain.com/error_callback?id=456ytgre56';
-payments.create_transaction(amount, label, currency, coin, success_url, error_url, function(error, resp) {
+payments.create_transaction(category, amount, label, currency, coin, success_url, error_url, function(error, resp) {
     if(error) {
         console.log(error);
     } else {
