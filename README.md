@@ -64,7 +64,7 @@ const marketa = new a3pay.a3_marketa(); //a3Marketa
 ```js
 //Payments collection
 //Calling create_transaction
-let category = 'test'; // 'live' or 'test'
+let category = 'checkout'; // 'checkout' or 'donation'
 let amount = 1000;
 let label = 'frgtyuy4';
 let currency = 'USD';
@@ -112,5 +112,4 @@ If you encounter a bug or have a suggestion to help improve this liobrary for ot
 
 ## License
 MIT - see LICENSE
-
 
