@@ -27,7 +27,7 @@ payments.get_tx_info(txid, function(error, resp) {
 
 
 //Calling create_transaction
-let category = 'test'; // 'live' or 'test'
+let category = 'checkout'; // 'checkout' or 'donation'
 let amount = 1000;
 let label = 'frgtyuy4';
 let currency = 'USD';
