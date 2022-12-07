@@ -1,6 +1,6 @@
 {
   "name": "a3pay-js",
-  "version": "1.0.6",
+  "version": "1.0.9",
   "description": "Finds the country of origin of the incoming request",
   "main": "dist/a3pay_nodejs.js",
   "keywords": [
