@@ -13,13 +13,13 @@ $ npm i a3pay-js
 Using jsDelivr CDN:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/a3pay-js@1.0.9/dist/a3pay.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/a3pay-js@1.1.0/dist/a3pay.min.js"></script>
 ```
 
 Using unpkg CDN:
 
 ```html
-<script src="https://unpkg.com/a3pay-js@1.0.9/dist/a3pay.min.js"></script>
+<script src="https://unpkg.com/a3pay-js@1.1.0/dist/a3pay.min.js"></script>
 ```
 
 Include from path:
@@ -112,4 +112,5 @@ If you encounter a bug or have a suggestion to help improve this liobrary for ot
 
 ## License
 MIT - see LICENSE
+
 
