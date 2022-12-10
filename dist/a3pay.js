@@ -38,10 +38,11 @@ class a3_payments {
         this.httpClient = new FetchHttpHandler();
     }
     create_transaction(cat, amt, lb, cur, coin, su_call, err_call, callback) {
+    let request = '';
         if(su_call) {
-            const request = this.endpoint + 'create_transaction/?token=' + this.token + '&amount=' + amt + '&mode=' + this.mode + '&category=' + cat + '&label=' + lb + '&currency=' + cur + '&coin=' + coin + '&success_callback=' + su_call + '&error_callback=' + err_call;
+            request = this.endpoint + 'create_transaction/?token=' + this.token + '&mode=' + this.mode + '&category=' + cat + '&amount=' + amt + '&label=' + lb + '&currency=' + cur + '&coin=' + coin + '&success_callback=' + su_call + '&error_callback=' + err_call;
         } else {
-            const request = this.endpoint + 'create_transaction/?token=' + this.token + '&amount=' + amt + '&label=' + lb + '&currency=' + cur + '&coin=' + coin;
+            request = this.endpoint + 'create_transaction/?token=' + this.token + '&mode=' + this.mode + '&category=' + cat + '&amount=' + amt + '&label=' + lb + '&currency=' + cur + '&coin=' + coin;
         }
         this.httpClient.send(request, function(err, resp) {
             if(resp.status == 'ok') {
@@ -52,7 +53,7 @@ class a3_payments {
         }, 'no-cache');
     }
     get_tx_info(txid, callback) {
-        const request = this.endpoint + 'get_tx_info/' + this.token + '/' + this.mode + '/' + txid;
+        let request = this.endpoint + 'get_tx_info/' + this.token + '/' + this.mode + '/' + txid;
         this.httpClient.send(request, function(err, resp) {
             if(resp.status == 'ok') {
                 callback(null, resp.data);
@@ -62,7 +63,7 @@ class a3_payments {
         }, 'cache');
     }
     get_tx_list(limit, callback) {
-        const request = this.endpoint + 'get_tx_list/' + this.token + '/' + this.mode + '/' + limit;
+        let request = this.endpoint + 'get_tx_list/' + this.token + '/' + this.mode + '/' + limit;
         this.httpClient.send(request, function(err, resp) {
             if(resp.status == 'ok') {
                 callback(null, resp.data);
@@ -78,7 +79,7 @@ class a3_marketa {
         this.httpClient = new FetchHttpHandler();
     }
     live_data(callback) {
-        const request = this.endpoint + 'live_data';
+        let request = this.endpoint + 'live_data';
         this.httpClient.send(request, function(err, resp) {
             if(resp.status == 'ok') {
                 callback(null, resp.data);
@@ -88,7 +89,7 @@ class a3_marketa {
         }, 'cache');
     }
     specific_data(target, symbol, option, callback) {
-        const request = this.endpoint + 'specific_data/?target=' + target + '&symbol=' + symbol + '&option=' + option;
+        let request = this.endpoint + 'specific_data/?target=' + target + '&symbol=' + symbol + '&option=' + option;
         this.httpClient.send(request, function(err, resp) {
             if(resp.status == 'ok') {
                 callback(null, resp.data);
@@ -98,7 +99,7 @@ class a3_marketa {
         }, 'cache');
     }
     list_symbols(callback) {
-        const request = this.endpoint + 'list_symbols';
+        let request = this.endpoint + 'list_symbols';
         this.httpClient.send(request, function(err, resp) {
             if(resp.status == 'ok') {
                 callback(null, resp.data);
@@ -108,7 +109,7 @@ class a3_marketa {
         }, 'cache');
     }
     list_targets(callback) {
-        const request = this.endpoint + 'list_targets';
+        let request = this.endpoint + 'list_targets';
         this.httpClient.send(request, function(err, resp) {
             if(resp.status == 'ok') {
                 callback(null, resp.data);
@@ -126,7 +127,7 @@ class a3_apps {
         this.httpClient = new FetchHttpHandler();
     }
     update_password(password, newpassword, callback) {
-        const request = this.endpoint + 'update_password/?token=' + this.token + '&password=' + password + '&newPassword=' + newpassword;
+        let request = this.endpoint + 'update_password/?token=' + this.token + '&password=' + password + '&newPassword=' + newpassword;
         this.httpClient.send(request, function(err, resp) {
             if(resp.status == 'ok') {
                 callback(null, resp.data);
@@ -136,7 +137,7 @@ class a3_apps {
         }, 'cache');
     }
     get_account_info(callback) {
-        const request = this.endpoint + 'get_account_info/?token=' + this.token;
+        let request = this.endpoint + 'get_account_info/?token=' + this.token;
         this.httpClient.send(request, function(err, resp) {
             if(resp.status == 'ok') {
                 callback(null, resp.data);
@@ -146,7 +147,7 @@ class a3_apps {
         }, 'cache');
     }
     list_login_activity(callback) {
-        const request = this.endpoint + 'list_login_activity/?token=' + this.token;
+        let request = this.endpoint + 'list_login_activity/?token=' + this.token;
         this.httpClient.send(request, function(err, resp) {
             if(resp.status == 'ok') {
                 callback(null, resp.data);
@@ -157,7 +158,7 @@ class a3_apps {
 
     }
     list_assets(callback) {
-        const request = this.endpoint + 'list_assets/?token=' + this.token;
+        let request = this.endpoint + 'list_assets/?token=' + this.token;
         this.httpClient.send(request, function(err, resp) {
             if(resp.status == 'ok') {
                 callback(null, resp.data);
@@ -168,7 +169,7 @@ class a3_apps {
 
     }
     support_countries(callback) {
-        const request = this.endpoint + 'support_countries/?token=' + this.token;
+        let request = this.endpoint + 'support_countries/?token=' + this.token;
         this.httpClient.send(request, function(err, resp) {
             if(resp.status == 'ok') {
                 callback(null, resp.data);
@@ -179,7 +180,7 @@ class a3_apps {
 
     }
     list_pricing(callback) {
-        const request = this.endpoint + 'list_pricing/?token=' + this.token;
+        let request = this.endpoint + 'list_pricing/?token=' + this.token;
         this.httpClient.send(request, function(err, resp) {
             if(resp.status == 'ok') {
                 callback(null, resp.data);
@@ -190,7 +191,7 @@ class a3_apps {
 
     }
     support_currencies(callback) {
-        const request = this.endpoint + 'support_currencies/?token=' + this.token;
+        let request = this.endpoint + 'support_currencies/?token=' + this.token;
         this.httpClient.send(request, function(err, resp) {
             if(resp.status == 'ok') {
                 callback(null, resp.data);
@@ -208,7 +209,7 @@ class a3_wallet {
         this.httpClient = new FetchHttpHandler();
     }
     get_new_address(label, callback) {
-        const request = 'get_new_address/?api_key=' + this.api_key + '&label=' + label;
+        let request = 'get_new_address/?api_key=' + this.api_key + '&label=' + label;
         this.httpClient.send(request, function(err, resp) {
             if(resp.status == 'ok') {
                 callback(null, resp.data.address);
@@ -218,7 +219,7 @@ class a3_wallet {
         }, 'cache');
     }
     get_balance(callback) {
-        const request = 'get_balance/?api_key=' + this.api_key;
+        let request = 'get_balance/?api_key=' + this.api_key;
         this.httpClient.send(request, function(err, resp) {
             if(resp.status == 'ok') {
                 callback(null, resp.data.avaliable_balance);
@@ -228,7 +229,7 @@ class a3_wallet {
         }, 'no-cache');
     }
     get_my_addresses(limit, callback) {
-        const request = 'get_my_addresses/?api_key=' + this.api_key + '&limit=' + limit;
+        let request = 'get_my_addresses/?api_key=' + this.api_key + '&limit=' + limit;
         this.httpClient.send(request, function(err, resp) {
             if(resp.status == 'ok') {
                 callback(null, resp.data.addresses);
@@ -238,7 +239,7 @@ class a3_wallet {
         }, 'cache');
     }
     get_address_by_label(label, callback) {
-        const request = 'get_address_by_label/?api_key=' + this.api_key + '&label=' + label;
+        let request = 'get_address_by_label/?api_key=' + this.api_key + '&label=' + label;
         this.httpClient.send(request, function(err, resp) {
             if(resp.status == 'ok') {
                 callback(null, resp.data.address);
@@ -248,7 +249,7 @@ class a3_wallet {
         }, 'no-cache');
     }
     get_address_balance(address, callback) {
-        const request = 'get_address_balance/?api_key=' + this.api_key + '&address=' + address;
+        let request = 'get_address_balance/?api_key=' + this.api_key + '&address=' + address;
         this.httpClient.send(request, function(err, resp) {
             if(resp.status == 'ok') {
                 callback(null, resp.data.final_balance);
@@ -258,7 +259,7 @@ class a3_wallet {
         }, 'no-cache');
     }
     get_network_fee_estimate(callback) {
-        const request = 'get_network_fee_estimate/?api_key=' + this.api_key;
+        let request = 'get_network_fee_estimate/?api_key=' + this.api_key;
         this.httpClient.send(request, function(err, resp) {
             if(resp.status == 'ok') {
                 callback(null, resp.data.feerate);
@@ -268,7 +269,7 @@ class a3_wallet {
         }, 'cache');
     }
     get_transaction(txid, callback) {
-        const request = 'get_transaction/?api_key=' + this.api_key + '&txid=' + txid;
+        let request = 'get_transaction/?api_key=' + this.api_key + '&txid=' + txid;
         this.httpClient.send(request, function(err, resp) {
             if(resp.status == 'ok') {
                 callback(null, resp.data.tx);
@@ -278,7 +279,7 @@ class a3_wallet {
         }, 'cache');
     }
     get_block_transaction(txid, callback) {
-        const request = 'get_block_transaction/?api_key=' + this.api_key + '&txid=' + txid;
+        let request = 'get_block_transaction/?api_key=' + this.api_key + '&txid=' + txid;
         this.httpClient.send(request, function(err, resp) {
             if(resp.status == 'ok') {
                 callback(null, resp.data.tx);
@@ -289,9 +290,9 @@ class a3_wallet {
     }
     send_to_address(address, amount, from, callback) {
         if(from) {
-            const request = 'send_to_address/?api_key=' + this.api_key + '&address=' + address + '&amount=' + amount + '&from=' + from;
+            let request = 'send_to_address/?api_key=' + this.api_key + '&address=' + address + '&amount=' + amount + '&from=' + from;
         } else {
-            const request = 'send_to_address/?api_key=' + this.api_key + '&address=' + address + '&amount=' + amount;
+            let request = 'send_to_address/?api_key=' + this.api_key + '&address=' + address + '&amount=' + amount;
         }
         this.httpClient.send(request, function(err, resp) {
             if(resp.status == 'ok') {
@@ -302,7 +303,7 @@ class a3_wallet {
         }, 'no-cache');
     }
     set_tx_fee(feerate, callback) {
-        const request = 'set_tx_fee/?api_key=' + this.api_key + '&feerate=' + feerate;
+        let request = 'set_tx_fee/?api_key=' + this.api_key + '&feerate=' + feerate;
         this.httpClient.send(request, function(err, resp) {
             if(resp.status == 'ok') {
                 callback(null, resp.data.message);
@@ -312,7 +313,7 @@ class a3_wallet {
         }, 'cache');
     }
     wallet_unlock(passphrase, duration, callback) {
-        const request = 'wallet_unlock/?api_key=' + this.api_key + '&passphrase=' + passphrase + '&duration=' + duration;
+        let request = 'wallet_unlock/?api_key=' + this.api_key + '&passphrase=' + passphrase + '&duration=' + duration;
         this.httpClient.send(request, function(err, resp) {
             if(resp.status == 'ok') {
                 callback(null, resp.data.message);
@@ -322,7 +323,7 @@ class a3_wallet {
         }, 'cache');
     }
     wallet_lock(callback) {
-        const request = 'wallet_lock/?api_key=' + this.api_key;
+        let request = 'wallet_lock/?api_key=' + this.api_key;
         this.httpClient.send(request, function(err, resp) {
             if(resp.status == 'ok') {
                 callback(null, resp.data.message);
@@ -332,7 +333,7 @@ class a3_wallet {
         }, 'cache');
     }
     passphrase_change(oldpassphrase, newpassphrase, callback) {
-        const request = 'passphrase_change/?api_key=' + this.api_key + '&oldpassphrase=' + oldpassphrase + '&newpassphrase=' + newpassphrase;
+        let request = 'passphrase_change/?api_key=' + this.api_key + '&oldpassphrase=' + oldpassphrase + '&newpassphrase=' + newpassphrase;
         this.httpClient.send(request, function(err, resp) {
             if(resp.status == 'ok') {
                 callback(null, resp.data.message);
@@ -342,7 +343,7 @@ class a3_wallet {
         }, 'no-cache');
     }
     dump_privkey(address, callback) {
-        const request = 'dump_privkey/?api_key=' + this.api_key + '&address=' + address;
+        let request = 'dump_privkey/?api_key=' + this.api_key + '&address=' + address;
         this.httpClient.send(request, function(err, resp) {
             if(resp.status == 'ok') {
                 callback(null, resp.data.privkey);
@@ -352,7 +353,7 @@ class a3_wallet {
         }, 'no-cache');
     }
     abandon_transaction(txid, callback) {
-        const request = 'abandon_transaction/?api_key=' + this.api_key + '&txid=' + txid;
+        let request = 'abandon_transaction/?api_key=' + this.api_key + '&txid=' + txid;
         this.httpClient.send(request, function(err, resp) {
             if(resp.status == 'ok') {
                 callback(null, 'Transaction Canceled');
